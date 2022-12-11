@@ -1,0 +1,63 @@
+<div class="card w-full pb-12 bg-transparent"
+    id="contattaci"
+>
+    <div class="card-body">
+        <h2
+            class="card-title font-sans tracking-wider text-primary uppercase mx-auto text-3xl"
+        >
+            Contattaci
+        </h2>
+        <hr class="my-6" />
+        <p class="text-center">
+            Per qualunque informazione o per richiedere un preventivo
+        </p>
+        <div class="card w-full bg-base-100">
+            <div class="card-body">
+                <form netlify name="contattaci">
+                    <div class="space-y-4">
+                        <div class="form-control">
+                            <label class="input-group">
+                                <input
+                                    type="text"
+                                    name="nome"
+                                    placeholder="Nome e Cognome"
+                                    class="input input-primary w-full"
+                                />
+                            </label>
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-2"
+                        >
+                            <div class="form-control w-full">
+                                <label class="input-group">
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        placeholder="Email"
+                                        class="input input-primary w-full"
+                                    />
+                                </label>
+                            </div>
+                            <div class="form-control w-full">
+                                <label class="input-group">
+                                    <input
+                                        type="text"
+                                        name="telefono"
+                                        placeholder="Telefono"
+                                        class="input input-primary w-full"
+                                    />
+                                </label>
+                            </div>
+                        </div>
+                        <textarea class="textarea textarea-primary w-full h-44"
+                            name="messaggio"
+                            placeholder="Scrivi la tua richiesta"></textarea>
+                    </div>
+                    <div class="card-actions justify-center mt-6">
+                        <button type="submit" class="btn btn-primary text-neutral-content w-32 font-sans tracking-widest">Invia</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

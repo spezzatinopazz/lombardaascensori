@@ -1,0 +1,96 @@
+---
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-base-200 card card-compact md:px-20 py-12"
+    id="galleria"
+>
+    <div class="card-body">
+        <div class="card-body">
+            <div class="card-title text-primary text-2xl font-sans tracking-wider pb-6 uppercase">
+                Ascensori
+            </div>
+            <div class="swiper h-96 w-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img
+                            class="object-cover rounded object-top w-full h-full"
+                            src="https://placeimg.com/256/400/arch"
+                        />
+                    </div>
+                    <div class="swiper-slide">
+                        <img
+                            class="object-cover rounded object-center w-full h-full"
+                            src="https://placeimg.com/256/400/arch"
+                        />
+                    </div>
+                    <div class="swiper-slide">
+                        <img
+                            class="object-cover rounded object-bottom w-full h-full"
+                            src="https://placeimg.com/256/400/arch"
+                        />
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+        
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="card-body">
+            <div class="card-title text-primary text-2xl font-sans tracking-wider pb-6 uppercase">
+                Montacarichi
+            </div>
+            <div class="swiper h-96 w-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img
+                            class="object-cover rounded object-top w-full h-full"
+                            src="https://placeimg.com/256/400/arch"
+                        />
+                    </div>
+                    <div class="swiper-slide">
+                        <img
+                            class="object-cover rounded object-center w-full h-full"
+                            src="https://placeimg.com/256/400/arch"
+                        />
+                    </div>
+                    <div class="swiper-slide">
+                        <img
+                            class="object-cover rounded object-bottom w-full h-full"
+                            src="https://placeimg.com/256/400/arch"
+                        />
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+        
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    import Swiper, { Navigation, Pagination, Autoplay } from "swiper";
+
+    const swiper1 = new Swiper(".swiper", {
+        modules: [Navigation, Pagination, Autoplay],
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: true,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>

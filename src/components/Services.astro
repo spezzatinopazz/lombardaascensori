@@ -1,0 +1,39 @@
+---
+import Service from "./Service.astro";
+---
+
+<div class="card w-full bg-transparent">
+    <div class="card-body">
+        <h2
+            class="card-title font-sans tracking-wider text-primary uppercase mx-auto text-3xl text-center"
+        >
+            I Nostri Servizi
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 mt-12">
+            <Service 
+                title="Ascensori"
+                description="Progettazione ed installazione di ascensori."
+                url="/servizi#ascensori"
+                icon="/icons/ascensori.png"
+            />
+            <Service 
+                title="Montacarichi"
+                description="Progettazione ed installazione di montacari ed elevatori."
+                url="/servizi#montacarichi"
+                icon="/icons/montacarichi.png"
+            />
+            <Service 
+                title="Elevatori Per Disabili"
+                description="Progettazione ed installazione di elevatori per disabili."
+                url="/servizi#elevatori"
+                icon="/icons/elevatori.png"
+            />
+            <Service 
+                title="Pronto Intervento"
+                description="Servizio di manutenzione e pronto intervento 24/7."
+                url="/servizi#assistenza"
+                icon="/icons/assistenza.png"
+            />
+        </div>
+    </div>
+</div>

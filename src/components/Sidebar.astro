@@ -1,0 +1,49 @@
+<div class="bg-base-100 w-3/4 lg:w-72">
+    <div class="bg-primary bg-opacity-90 w-full pt-2 px-3 font-semibold h-full text-neutral-content">
+        <div class="mb-4">
+            <label for="layout-drawer" class="btn btn-ghost lg:hidden">
+                <svg class="fill-none stroke-current w-6 h-6" 
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>      
+            </label>
+        </div>
+        <ol class="menu pl-6 mx-auto space-y-3">
+            <li class="hover-bordered">
+                <a class="py-1">1 - Home</a>
+            </li>
+            <li class="hover-bordered">
+                <a class="py-1">2 - Chi Siamo</a>
+            </li>
+            <li class="hover-bordered">
+                <a class="py-1">3 - Servizi</a>
+            </li>
+            <li class="hover-bordered ml-4">
+                <a class="py-1">4 - Ascensori</a>
+            </li>
+            <li class="hover-bordered ml-4">
+                <a class="py-1">5 - Montacarichi</a>
+            </li>
+            <li class="hover-bordered ml-4">
+                <a class="py-1">6 - Elevatori Per Disabili</a>
+            </li>
+            <li class="hover-bordered ml-4">
+                <a class="py-1">7 - Pronto Intervento</a>
+            </li>
+            <li class="hover-bordered">
+                <a class="py-1">8 - Galleria</a>
+            </li>
+            <li class="hover-bordered">
+                <a class="py-1">9 - Contatti</a>
+            </li>
+        </ol>
+        <div class="grid grid-cols-3 gap-2 mt-8 place-items-center w-[12rem] mx-auto px-4 py-4 bg-secondary-focus rounded-lg inner-shadow">
+            {
+                Array.from({length: 9}).map( (item,index) => 
+                <div class="rounded-full shadow-lg transition cursor-pointer transform active:translate-y-px hover:shadow-inner hover:bg-secondary h-12 w-12 bg-neutral-content font-bold text-secondary-focus hover:text-secondary-content flex items-center justify-center">
+                    { index+1 }
+                </div>)
+            }
+        </div>
+    </div>
+</div>
