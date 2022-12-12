@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../Layouts/BaseLayout.astro";
+import bgElevator from "../assets/img/bg-elevator.jpg";
+---
+
+<BaseLayout title="404 | Pagina non trovata">
+    <div class="h-96 my-16">
+        <div class="flex items-center justify-center max-w-xl h-full mx-auto error font-error"
+            x-data="{
+                open : false,
+                lift : false,
+                openElevator(){
+                    this.lift = true;
+                    setTimeout( () =>
+                        this.open = true
+                    , 2000);
+                },
+                closeAndLeave(){
+                    this.open = false;
+                    setTimeout( () => {
+                        this.lift = false; 
+                        location.href='/';
+                    }, 1000); 
+                }
+            }"
+            x-init="document.querySelector('body').onload = () => {openElevator()};"
+        >
+            <div
+                class="mt-20 relative scale-50 shrink-0 w-[32rem] sm:w-[35rem] bg-gray-300 border-2 border-b-0 border-black h-[50rem]"
+                x-show="lift"
+                x-transition:enter="transition ease-out duration-[1500ms]"
+                x-transition:enter-start="translate-y-full"
+                x-transition:enter-end="translate-y-0"
+                x-transition:leave="transition ease-in duration-[1000ms]"
+                x-transition:leave-start="translate-y-0"
+                x-transition:leave-end="-translate-y-full"
+            >
+                <div class="absolute inset-x-0 w-24 mx-auto text-center bg-yellow-200 border border-black h-14 top-12">
+                    <h1 class="mt-3 text-2xl text-green-500">404</h1>
+                </div>
+
+                <div class="absolute inset-x-0 bottom-0 mx-auto border-2 border-b-0 border-black w-96 h-5/6">
+                    <div class="relative flex flex-row items-center justify-center w-full h-full overflow-hidden bg-white">
+                        <div class="z-50 w-48 h-full ml-0 bg-gray-200 border-r-2 border-black"
+                            x-transition:leave="transition ease-out duration-1000"
+                            x-transition:leave-start="translate-x-0"
+                            x-transition:leave-end="-translate-x-48"
+                            x-transition:enter="transition ease-in duration-1000"
+                            x-transition:enter-start="-translate-x-48"
+                            x-transition:enter-end="translate-x-0"
+                            x-show="!open"
+                            x-cloak
+                        >
+                        </div>
+                        <div class="z-50 w-48 h-full mr-0 bg-gray-200 border-l-2 border-black"
+                            x-transition:leave="transition ease-out duration-1000"
+                            x-transition:leave-start="translate-x-0"
+                            x-transition:leave-end="translate-x-48"
+                            x-transition:enter="transition ease-in duration-1000"
+                            x-transition:enter-start="translate-x-48"
+                            x-transition:enter-end="translate-x-0"
+                            x-show="!open"
+                            x-cloak
+                        >
+                        </div>
+                        <div class={`absolute inset-0 bg-cover`}
+                            style={`background-image: url(${bgElevator})`}
+                        >
+                            <div class="w-full h-full m-auto">
+                                <div class="flex flex-col mt-48 space-y-6 text-3xl text-center text-white">
+                                    <span>Ops...</span>
+                                    <span>Piano Sbagliato</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute w-10 h-20 border border-black inset-y-1/2 right-2 sm:right-5">
+                    <div class="flex flex-col items-center justify-center h-full space-y-4">
+                        <button class="w-5 h-5 bg-green-400 rounded-full"
+                            x-on:click="closeAndLeave"
+                        ></button>
+                        <button class="w-5 h-5 bg-green-400 rounded-full"
+                            x-on:click="open = !open"
+                        >
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</BaseLayout>

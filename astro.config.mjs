@@ -7,11 +7,14 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
+import alpinejs from "@astrojs/alpinejs";
+
+// https://astro.build/config
 export default defineConfig({
   site: 'https://lombardaascensori.it',
   integrations: [tailwind({
     config: {
       applyBaseStyles: false
     }
-  }), sitemap()]
+  }), sitemap(), alpinejs()]
 });

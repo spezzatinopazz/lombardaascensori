@@ -1,15 +1,23 @@
 <div
-  class="navbar z-20 fixed top-0 inset-x-0 bg-primary text-neutral-content transition duration-300 ease-in-out bg-opacity-60 backdrop-blur-lg"
-  id="navbar"
+  class="z-10 navbar fixed top-0 inset-x-0 bg-primary text-neutral-content transition duration-300 ease-in-out sm:bg-opacity-60 sm:backdrop-blur-lg"
+  :class="{
+    'bg-opacity-100 backdrop-blur-none' : open,
+    'bg-opacity-60 backdrop-blur-lg': !open
+  }"
+  x-data="{
+    open: false,
+  }"
 >
-  <div class="container mx-auto">
-    <div class="flex-1">
+  <div class="container mx-auto flex justify-between">
+    <div class="z-20">
       <a href="/">
         <img class="h-9" src="/icon.png" />
       </a>
     </div>
-    <div class="flex-none">
-      <ul class="hidden md:flex menu menu-horizontal px-1">
+
+    <div class="z-20">
+      <!-- Expanded Menu -->
+      <ul class="hidden sm:flex menu menu-horizontal px-1">
         <li><a href="/">Home</a></li>
         <li tabindex="1">
           <a href="/servizi">
@@ -36,50 +44,62 @@
         <li><a href="/#contattaci">Contattaci</a></li>
       </ul>
 
-      <div class="flex justify-end flex-1 px-2 md:hidden">
-        <div class="flex items-stretch">
-          <div class="dropdown dropdown-bottom dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-7 w-7"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h7"></path>
-              </svg>
-            </label>
-            <ul
-              tabindex="0"
-              class="menu dropdown-content p-2 shadow bg-primary-focus rounded-box w-52 mt-1 mr-8 lg:hidden"
+      <!-- Compact Menu -->
+      <div class="flex justify-end flex-1 px-2 sm:hidden">
+        <div class="flex items-stretch" x-on:click="open=!open">
+          <button class="btn btn-ghost btn-circle">
+            <svg x-show="!open"
+              class="h-7 w-7 stroke-current"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h7"></path>
+            </svg>
+            <svg x-show="open"
+              class="h-7 w-7 stroke-current"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
             >
-              <li><a href="/">Home</a></li>
-              <li><a href="/servizi">Servizi</a></li>
-              <li class="ml-4"><a href="/servizi#ascensori">Ascensori</a></li>
-              <li class="ml-4"><a href="/servizi#montacarichi">Montacarichi</a></li>
-              <li class="ml-4"><a href="/servizi#elevatori">Elevatori Per Disabili</a></li>
-              <li class="ml-4"><a href="/servizi#assistenza">Pronto Intervento</a></li>
-              <li><a href="/#galleria">Galleria</a></li>
-              <li><a href="/#contattaci">Contattaci</a></li>
-            </ul>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Compact Menu Dropdown -->
+    <div
+      class="sm:hidden z-0 w-full h-screen pb-16 top-16 bg-primary absolute right-0 transition transform duration-500 ease-in-out"
+      :class="{
+        'translate-y-0 opacity-100': open,
+        '-translate-y-full -top-16 opacity-80': !open
+      }"
+    >
+      <ul class="menu pt-6 px-16 max-w-xs h-full mx-auto">
+        <li><a href="/">Home</a></li>
+        <li><a href="/servizi">Servizi</a></li>
+        <li class="ml-4"><a href="/servizi#ascensori">Ascensori</a></li>
+        <li class="ml-4">
+          <a href="/servizi#montacarichi">Montacarichi</a>
+        </li>
+        <li class="ml-4">
+          <a href="/servizi#elevatori">Elevatori Per Disabili</a>
+        </li>
+        <li class="ml-4">
+          <a href="/servizi#assistenza">Pronto Intervento</a>
+        </li>
+        <li><a href="/#galleria">Galleria</a></li>
+        <li><a href="/#contattaci">Contattaci</a></li>
+      </ul>
+    </div>
   </div>
 </div>
-
-<script>
-  // const navbar = document.getElementById("navbar");
-  // window.addEventListener("scroll", (event) => {
-  //   if (window.pageYOffset > 100) {
-  //     navbar.classList.remove("bg-opacity-60");
-  //   } else {
-  //     navbar.classList.add("bg-opacity-60");
-  //   }
-  // });
-</script>

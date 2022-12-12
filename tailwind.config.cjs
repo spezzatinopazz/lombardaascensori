@@ -4,7 +4,8 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			"serif": ['PT Sans'],
-			"sans": ["Nunito Sans"]
+			"sans": ['Nunito Sans'],
+			"error": ['"Press Start 2P"','cursive'],
 		},
 		extend: {},
 	},
