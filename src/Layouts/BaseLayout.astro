@@ -13,7 +13,7 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
 const {title = Config.siteTitle, description = Config.siteDescription, noindex = false} = Astro.props;
-const {COOKIEBOT_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
+const {COOKIEBOT_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 ---
 
 <html lang="it" class="scroll-smooth page">
@@ -41,6 +41,12 @@ const {COOKIEBOT_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 			)
 		}
 
+		{
+			GOOGLE_SEARCH_CONSOLE_ID && (
+				<meta name="google-site-verification" content={GOOGLE_SEARCH_CONSOLE_ID}/>
+			)
+		}
+		
 		{
 			GOOGLE_ANALYTICS_ID && (
 				<script type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
