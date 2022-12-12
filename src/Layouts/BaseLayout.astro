@@ -13,19 +13,55 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
 const {title = Config.siteTitle, description = Config.siteDescription, noindex = false} = Astro.props;
+const {COOKIEBOT_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 ---
 
 <html lang="it" class="scroll-smooth page">
     <head>
+
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/icon.png" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+
         <SEO 
             title={title}
             description={description}
             noindex={noindex}
         />
+
+        {
+			COOKIEBOT_ID && (
+				<script type="text/javascript"
+					id="Cookiebot"
+					src="https://consent.cookiebot.com/uc.js"
+					data-cbid={`${COOKIEBOT_ID}`}
+					async
+				></script>
+			)
+		}
+
+		{
+			GOOGLE_ANALYTICS_ID && (
+				<script type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
+					async
+					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+					data-cookieconsent="statistics"
+				></script>
+				<script  type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
+					data-gaid={GOOGLE_ANALYTICS_ID}
+					data-cookieconsent="statistics"
+				>
+					window.dataLayer = window.dataLayer || [];
+					function gtag() {
+						dataLayer.push(arguments);
+					}
+					gtag("js", new Date());
+
+					gtag("config", document.currentScript.dataset.gaid);
+				</script>
+			)
+		}
     </head>
     <body class="font-serif relative">
         <Navbar />
@@ -34,17 +70,26 @@ const {title = Config.siteTitle, description = Config.siteDescription, noindex =
         </div>
         <Footer />
 
-        <script type="text/javascript">
-            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-            (function(){
-            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-            s1.async=true;
-            s1.src='https://embed.tawk.to/62913cfcb0d10b6f3e746ade/1g43lcfb5';
-            s1.charset='UTF-8';
-            s1.setAttribute('crossorigin','*');
-            s0.parentNode.insertBefore(s1,s0);
-            })();
-        </script>
+        {
+			TAWKTO_WIDGET_URL && (
+				<script type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
+					data-cookieconsent="preferences, statistics"
+					data-url={TAWKTO_WIDGET_URL}
+				>
+					var Tawk_API = Tawk_API || {},
+						Tawk_LoadStart = new Date();
+					(function () {
+						var s1 = document.createElement("script"),
+							s0 = document.getElementsByTagName("script")[0];
+						s1.async = true;
+						s1.src = document.currentScript.dataset.url;
+						s1.charset = "UTF-8";
+						s1.setAttribute("crossorigin", "*");
+						s0.parentNode.insertBefore(s1, s0);
+					})();
+				</script>
+			)
+		}
         
     </body>
 </html>
