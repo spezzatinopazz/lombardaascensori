@@ -21,3 +21,5 @@
         background: theme('colors.primary') !important;
     }
   }
+
+[x-cloak] { display: none !important; }
