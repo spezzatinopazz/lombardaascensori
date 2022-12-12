@@ -1,9 +1,9 @@
 <div class="card w-full pb-12 bg-transparent -mt-20 pt-20 max-w-3xl mx-auto"
     id="contattaci"
+    x-data="contactForm"
 >
     <div class="card-body">
-        <h2 class="card-title font-sans tracking-wider text-primary uppercase mx-auto text-3xl"
-        >
+        <h2 class="card-title font-sans tracking-wider text-primary uppercase mx-auto text-3xl">
             Contattaci
         </h2>
         <hr class="my-6" />
@@ -12,7 +12,7 @@
         </p>
         <div class="card w-full bg-base-100">
             <div class="card-body">
-                <form netlify name="contattaci">
+                <form netlify name="contattaci" x-ref="form">
                     <div class="space-y-4">
                         <div class="form-control">
                             <label class="input-group">
@@ -21,6 +21,9 @@
                                     name="nome"
                                     placeholder="Nome e Cognome"
                                     class="input input-primary w-full"
+                                    x-model="nome"
+                                    x-bind:disabled="result.success !== null"
+                                    x-on:input.debounce.500="validate()"
                                 />
                             </label>
                         </div>
@@ -34,6 +37,9 @@
                                         name="email"
                                         placeholder="Email"
                                         class="input input-primary w-full"
+                                        x-model="email"
+                                        x-bind:disabled="result.success !== null"
+                                        x-on:input.debounce.500="validate()"
                                     />
                                 </label>
                             </div>
@@ -44,19 +50,89 @@
                                         name="telefono"
                                         placeholder="Telefono"
                                         class="input input-primary w-full"
+                                        x-model="telefono"
+                                        x-bind:disabled="result.success !== null"
+                                        x-on:input.debounce.500="validate()"
                                     />
                                 </label>
                             </div>
                         </div>
                         <textarea class="textarea textarea-primary w-full h-44"
                             name="messaggio"
-                            placeholder="Scrivi la tua richiesta"></textarea>
+                            placeholder="Scrivi la tua richiesta"
+                            x-model="messaggio"
+                            x-bind:disabled="result.success !== null"
+                            x-on:input.debounce.500="validate()"
+                        ></textarea>
                     </div>
-                    <div class="card-actions justify-center mt-6">
-                        <button type="submit" class="btn btn-primary text-neutral-content w-32 font-sans tracking-widest">Invia</button>
+                    <div class="card-actions justify-center mt-6"
+                    >
+                        <button type="button" class="btn btn-primary text-neutral-content w-32 font-sans tracking-widest"
+                            x-show="result.success === null"
+                            x-ref="submit"
+                            x-on:click="submit"
+                            x-bind:disabled="!valid || result.success !== null"
+                        >Invia</button>
+                        <div class="alert shadow-lg"
+                            :class="result.success ? 'alert-success' : 'alert-error'"
+                            x-cloak
+                            x-show="result.success !== null"
+                            x-transition:enter="transition transform ease-out duration-1000"
+                            x-transition:enter-start="opacity-0"
+                            x-transition:enter-end="opacity-100"
+                            x-transition:leave="transition transform ease-in duration-300"
+                            x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0"
+                        >
+                            <div>
+                                <svg class="stroke-current flex-shrink-0 h-6 w-6" xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span x-text="result.message"></span>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('contactForm', () => ({
+            nome: '',
+            email: '',
+            telefono: '',
+            messaggio: '',
+            result: {
+                success: null,
+                message: 'Si è verificato un error. Perfavore, riprova più tardi', 
+            },
+            valid: false,
+            validate(){
+                this.email = this.email.trim();
+                this.telefono = this.telefono.trim();
+                let validNome = this.nome.trim().length > 3;
+                let validEmail = this.email.length > 6 && this.email.split('@').length > 1 && this.email.split('@')[1].includes('.');
+                let validTelefono = this.telefono.length == 10 && !isNaN(parseFloat(this.telefono)) && !isNaN(this.telefono - 0);
+                let validMessaggio = this.messaggio.trim().length > 5;
+                return this.valid = validNome && ( validEmail || ( !this.email.length && validTelefono  ) ) && ( validTelefono || ( !this.telefono.length && validEmail  ) ) && validMessaggio;
+            },
+            submit(){
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(this.$refs.form)).toString(),
+                })
+                .then(() => {
+                    this.result.message = 'Messaggio inviato. Grazie!';
+                    this.result.success = true;
+                })
+                .catch((error) => {
+                    this.result.message = 'Si è verificato un errore. Perfavore, riprova più tardi';
+                    this.result.success = false;
+                });
+            }
+        }))
+    })
+</script>
