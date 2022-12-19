@@ -5,8 +5,8 @@ import "swiper/css/pagination";
 
 import { galleries }  from "../data/galleries";
 
-const ascensori = galleries.filter( (gallery) => gallery.category == 'Ascensori');
-const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori');
+const ascensori = galleries.filter( (gallery) => gallery.category == 'Ascensori' || gallery.category == 'Incastellature');
+const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori' || gallery.category == 'Montacarichi');
 ---
 
 <div class="bg-base-200 md:px-20 py-12"
@@ -15,7 +15,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 card card-compact max-w-7xl mx-auto">
         <div class="card-body">
             <div class="card-body">
-                <div class="card-title text-primary text-2xl font-sans tracking-wider pb-6 uppercase">
+                <div class="card-title justify-center text-primary text-2xl font-sans tracking-wider pb-6 uppercase">
                     Ascensori
                 </div>
                 <div class="swiper h-96 w-full">
@@ -39,7 +39,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
                 <div class="card-actions justify-center mt-6">
                     {
                         ascensori.map( (ascensore,id) => 
-                            <button class="btn btn-primary"
+                            <button class="btn btn-xs btn-primary text-neutral-content"
                                 onclick={`updateSlider(${galleries.indexOf(ascensore)})`}
                             >{ascensore.title}</button>
                         )
@@ -49,7 +49,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
         </div>
         <div class="card-body">
             <div class="card-body">
-                <div class="card-title text-primary text-2xl font-sans tracking-wider pb-6 uppercase">
+                <div class="card-title justify-center text-primary text-2xl font-sans tracking-wider pb-6 uppercase">
                     Elevatori Per Disabili
                 </div>
                 <div class="swiper h-96 w-full">
@@ -73,7 +73,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
                 <div class="card-actions justify-center mt-6">
                     {
                         elevatori.map( (elevatore) => 
-                            <button class="btn btn-primary"
+                            <button class="btn btn-xs btn-primary text-neutral-content"
                                 onclick={`updateSlider(${galleries.indexOf(elevatore)})`}
                             >{elevatore.title}</button>
                         )
@@ -91,10 +91,10 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
     const swipers = new Swiper(".swiper", {
         modules: [Navigation, Pagination, Autoplay, Manipulation ],
         loop: true,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: true,
-        },
+        // autoplay: {
+        //     delay: 5000,
+        //     disableOnInteraction: true,
+        // },
         pagination: {
             el: ".swiper-pagination",
         },
@@ -105,7 +105,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
     });
 
     const updateSlider = (galleryId) => {
-        var swiperId = galleries[galleryId].category == 'Ascensori' ? 0 : 1;
+        var swiperId = galleries[galleryId].category == 'Ascensori' || galleries[galleryId].category == 'Incastellature' ? 0 : 1;
         swipers[swiperId].removeAllSlides();
         swipers[swiperId].prependSlide(Array.from(galleries[galleryId].images, image => {
             return `
