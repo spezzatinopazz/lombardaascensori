@@ -2,6 +2,11 @@
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
+import { galleries }  from "../data/galleries";
+
+const ascensori = galleries.filter( (gallery) => gallery.category == 'Ascensori');
+const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori');
 ---
 
 <div class="bg-base-200 md:px-20 py-12"
@@ -15,29 +20,30 @@ import "swiper/css/pagination";
                 </div>
                 <div class="swiper h-96 w-full">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img
-                                class="object-cover rounded object-top w-full h-full"
-                                src="https://placeimg.com/256/400/arch"
-                            />
-                        </div>
-                        <div class="swiper-slide">
-                            <img
-                                class="object-cover rounded object-center w-full h-full"
-                                src="https://placeimg.com/256/400/arch"
-                            />
-                        </div>
-                        <div class="swiper-slide">
-                            <img
-                                class="object-cover rounded object-bottom w-full h-full"
-                                src="https://placeimg.com/256/400/arch"
-                            />
-                        </div>
+                        {
+                            ascensori[0].images.map( (image) => (
+                                    <div class="swiper-slide">
+                                        <img
+                                            class="object-contain rounded object-top w-full h-full"
+                                            src={`${ascensori[0].folder}${image}`}
+                                        />
+                                    </div>
+                            ))
+                        }
                     </div>
                     <div class="swiper-pagination"></div>
             
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
+                </div>
+                <div class="card-actions justify-center mt-6">
+                    {
+                        ascensori.map( (ascensore,id) => 
+                            <button class="btn btn-primary"
+                                onclick={`updateSlider(${galleries.indexOf(ascensore)})`}
+                            >{ascensore.title}</button>
+                        )
+                    }
                 </div>
             </div>
         </div>
@@ -48,29 +54,30 @@ import "swiper/css/pagination";
                 </div>
                 <div class="swiper h-96 w-full">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img
-                                class="object-cover rounded object-top w-full h-full"
-                                src="https://placeimg.com/256/400/arch"
-                            />
-                        </div>
-                        <div class="swiper-slide">
-                            <img
-                                class="object-cover rounded object-center w-full h-full"
-                                src="https://placeimg.com/256/400/arch"
-                            />
-                        </div>
-                        <div class="swiper-slide">
-                            <img
-                                class="object-cover rounded object-bottom w-full h-full"
-                                src="https://placeimg.com/256/400/arch"
-                            />
-                        </div>
+                        {
+                            elevatori[0].images.map( (image) => (
+                                <div class="swiper-slide">
+                                    <img
+                                        class="object-contain rounded w-full h-full"
+                                        src={`${elevatori[0].folder}${image}`}
+                                    />
+                                </div>
+                            ))
+                        }
                     </div>
                     <div class="swiper-pagination"></div>
             
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
+                </div>
+                <div class="card-actions justify-center mt-6">
+                    {
+                        elevatori.map( (elevatore) => 
+                            <button class="btn btn-primary"
+                                onclick={`updateSlider(${galleries.indexOf(elevatore)})`}
+                            >{elevatore.title}</button>
+                        )
+                    }
                 </div>
             </div>
         </div>
@@ -78,10 +85,11 @@ import "swiper/css/pagination";
 </div>
 
 <script>
-    import Swiper, { Navigation, Pagination, Autoplay } from "swiper";
+    import Swiper, { Navigation, Pagination, Autoplay, Manipulation  } from "swiper";
+    import { galleries }  from "../data/galleries";
 
-    const swiper = new Swiper(".swiper", {
-        modules: [Navigation, Pagination, Autoplay],
+    const swipers = new Swiper(".swiper", {
+        modules: [Navigation, Pagination, Autoplay, Manipulation ],
         loop: true,
         autoplay: {
             delay: 5000,
@@ -95,4 +103,21 @@ import "swiper/css/pagination";
             prevEl: ".swiper-button-prev",
         },
     });
+
+    const updateSlider = (galleryId) => {
+        var swiperId = galleries[galleryId].category == 'Ascensori' ? 0 : 1;
+        swipers[swiperId].removeAllSlides();
+        swipers[swiperId].prependSlide(Array.from(galleries[galleryId].images, image => {
+            return `
+                <div class="swiper-slide">
+                    <img
+                        class="object-contain rounded w-full h-full"
+                        src="${galleries[galleryId].folder}${image}"
+                    />
+                </div>
+            `
+        }));
+    };
+
+    window.updateSlider = updateSlider;
 </script>
