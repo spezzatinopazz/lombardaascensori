@@ -16,5 +16,11 @@ export default defineConfig({
     config: {
       applyBaseStyles: false
     }
-  }), sitemap(), alpinejs()]
+    }), alpinejs(),
+    sitemap({
+      filter: (page) => 
+        page !== 'https://lombardaascensori.it/privacy-policy/' && 
+        page !== 'https://lombardaascensori.it/cookie-policy/'
+    })
+  ]
 });
