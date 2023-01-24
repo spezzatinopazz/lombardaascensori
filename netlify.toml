@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "https://ascensorimonza.com/*"
+  to = "https://www.lombardaascensori.it/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.ascensorimonza.com/*"
+  to = "https://www.lombardaascensori.it/:splat"
+  status = 301
+  force = true
