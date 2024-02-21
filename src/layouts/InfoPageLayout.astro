@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const { title, header, ...props } = Astro.props.frontmatter || Astro.props; 
+---
+
+<BaseLayout {title} {...props}>
+    <div class="container max-w-7xl mx-auto md:px-20 py-12">
+        <div class="card w-full pb-12 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <h2 class="card-title font-sans tracking-wider text-primary uppercase mx-auto text-3xl -mt-20 pt-20"
+                    id="main"
+                >
+                    {header ?? title}
+                </h2>
+                <hr class="my-6" />
+                <section class="text-base font-medium text-left prose md:max-w-full md:mx-12 mx-auto">
+                    <slot />
+                </section>
+            </div>
+        </div>
+    </div>
+</BaseLayout>
