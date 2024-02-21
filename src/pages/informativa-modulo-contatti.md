@@ -1,4 +1,5 @@
 ---
+layout: "../layouts/InfoPageLayout.astro"
 title: Informativa Modulo Contatti
 noindex: true
 ---
