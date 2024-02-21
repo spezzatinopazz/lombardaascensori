@@ -1,29 +1,17 @@
 ---
-import BaseLayout from "../Layouts/BaseLayout.astro";
+import InfoPageLayout from "../Layouts/InfoPageLayout.astro";
 
 const {COOKIEBOT_ID } = import.meta.env;
 ---
 
-<BaseLayout title="Lombarda Ascensori | Cookie Policy" noindex={true}>
-    <div class="container max-w-7xl mx-auto md:px-20 py-12">
-        <div class="card w-full pb-12 bg-base-100 shadow-xl">
-            <div class="card-body">
-                <h2
-                    class="card-title font-sans tracking-wider text-primary uppercase mx-auto text-3xl -mt-20 pt-20"
-                    id="main"
-                >
-                    Cookie Policy
-                </h2>
-                <hr class="my-6" />
-                <section class="text-base font-medium text-left prose md:max-w-full md:mx-12 mx-auto">
-                    <script
-                        type="text/javascript"
-                        src={`https://consent.cookiebot.com/${COOKIEBOT_ID}/cd.js`}
-                        id="CookieDeclaration"
-                        async
-                    ></script>
-                </section>
-            </div>
-        </div>
-    </div>
-</BaseLayout>
+<InfoPageLayout 
+    title="Cookie Policy" 
+    noindex={true}
+>
+    <script
+        type="text/javascript"
+        src={`https://consent.cookiebot.com/${COOKIEBOT_ID}/cd.js`}
+        id="CookieDeclaration"
+        async
+    ></script>
+</InfoPageLayout>

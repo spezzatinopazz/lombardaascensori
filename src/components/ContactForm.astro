@@ -64,6 +64,17 @@
                             x-bind:disabled="result.success !== null"
                             x-on:input.debounce.500="validate()"
                         ></textarea>
+                        <div class="form-control w-fit">
+                            <label class="label cursor-pointer space-x-2">
+                                <input type="checkbox" class="checkbox checkbox-primary" 
+                                    x-model="privacyChecked"
+                                    x-bind:disabled="result.success !== null"
+                                    x-on:change="validate()"
+                                />
+                                <span class="label-text"
+                                >Ho letto e accetto l'<a href="/informativa-modulo-contatti" class="link" target="_blank">informativa sulla privacy</a></span> 
+                            </label>
+                        </div>
                     </div>
                     <div class="card-actions justify-center mt-6"
                     >
@@ -104,6 +115,7 @@
             email: '',
             telefono: '',
             messaggio: '',
+            privacyChecked: false,
             result: {
                 success: null,
                 message: 'Si è verificato un error. Perfavore, riprova più tardi', 
@@ -116,7 +128,8 @@
                 let validEmail = this.email.length > 6 && this.email.split('@').length > 1 && this.email.split('@')[1].includes('.');
                 let validTelefono = this.telefono.length == 10 && !isNaN(parseFloat(this.telefono)) && !isNaN(this.telefono - 0);
                 let validMessaggio = this.messaggio.trim().length > 5;
-                return this.valid = validNome && ( validEmail || ( !this.email.length && validTelefono  ) ) && ( validTelefono || ( !this.telefono.length && validEmail  ) ) && validMessaggio;
+                let validPrivacyChecked = this.privacyChecked == true;
+                return this.valid = validNome && ( validEmail || ( !this.email.length && validTelefono  ) ) && ( validTelefono || ( !this.telefono.length && validEmail  ) ) && validMessaggio && validPrivacyChecked;
             },
             submit(){
                 fetch('/', {

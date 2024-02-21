@@ -12,7 +12,7 @@ import { SEO } from "astro-seo";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const {title = Config.siteTitle, description = Config.siteDescription, noindex = false} = Astro.props;
+const {title = Config.siteMotto, description = Config.siteDescription, noindex = false} = Astro.props;
 const {COOKIEBOT_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 ---
 
@@ -25,7 +25,7 @@ const {COOKIEBOT_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGE
         <meta name="generator" content={Astro.generator} />
 
         <SEO 
-            title={title}
+            title={Config.siteName + ' | '  + title}
             description={description}
             noindex={noindex}
         />
