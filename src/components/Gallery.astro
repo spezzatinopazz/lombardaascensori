@@ -85,7 +85,8 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
 </div>
 
 <script>
-    import Swiper, { Navigation, Pagination, Autoplay, Manipulation  } from "swiper";
+    import Swiper from "swiper";
+    import { Navigation, Pagination, Autoplay, Manipulation  } from "swiper/modules";
     import { galleries }  from "../data/galleries";
 
     const swipers = new Swiper(".swiper", {

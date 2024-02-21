@@ -20,7 +20,8 @@ export default defineConfig({
     sitemap({
       filter: (page) => 
         page !== 'https://lombardaascensori.it/privacy-policy/' && 
-        page !== 'https://lombardaascensori.it/cookie-policy/'
+        page !== 'https://lombardaascensori.it/cookie-policy/'  && 
+        page !== 'https://lombardaascensori.it/informativa-modulo-contatti/'
     })
   ]
 });
