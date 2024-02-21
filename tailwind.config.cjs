@@ -18,7 +18,7 @@ module.exports = {
 		themes: [
 			{
 				corporate: {
-					...require("daisyui/src/colors/themes")["[data-theme=corporate]"],
+					...require("daisyui/src/theming/themes")["corporate"],
 					primary: "#388DD8",
 					accent: "#FF4136",
 				}

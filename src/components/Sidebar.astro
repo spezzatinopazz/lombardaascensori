@@ -37,10 +37,10 @@
                 <a class="py-1">9 - Contatti</a>
             </li>
         </ol>
-        <div class="grid grid-cols-3 gap-2 mt-8 place-items-center w-[12rem] mx-auto px-4 py-4 bg-secondary-focus rounded-lg inner-shadow">
+        <div class="grid grid-cols-3 gap-2 mt-8 place-items-center w-[12rem] mx-auto px-4 py-4 bg-[color-mix(in_oklab,oklch(var(--s)),black_7%)] rounded-lg inner-shadow">
             {
                 Array.from({length: 9}).map( (item,index) => 
-                <div class="rounded-full shadow-lg transition cursor-pointer transform active:translate-y-px hover:shadow-inner hover:bg-secondary h-12 w-12 bg-neutral-content font-bold text-secondary-focus hover:text-secondary-content flex items-center justify-center">
+                <div class="rounded-full shadow-lg transition cursor-pointer transform active:translate-y-px hover:shadow-inner hover:bg-secondary h-12 w-12 bg-neutral-content font-bold text-[color-mix(in_oklab,oklch(var(--p)),black_7%)] hover:text-secondary-content flex items-center justify-center">
                     { index+1 }
                 </div>)
             }

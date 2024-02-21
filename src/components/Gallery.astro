@@ -39,7 +39,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
                 <div class="card-actions justify-center mt-6">
                     {
                         ascensori.map( (ascensore,id) => 
-                            <button class="btn btn-xs btn-primary text-neutral-content"
+                            <button class="btn uppercase btn-xs btn-primary text-neutral-content"
                                 onclick={`updateSlider(${galleries.indexOf(ascensore)})`}
                             >{ascensore.title}</button>
                         )
@@ -73,7 +73,7 @@ const elevatori = galleries.filter( (gallery) => gallery.category == 'Elevatori'
                 <div class="card-actions justify-center mt-6">
                     {
                         elevatori.map( (elevatore) => 
-                            <button class="btn btn-xs btn-primary text-neutral-content"
+                            <button class="btn uppercase btn-xs btn-primary text-neutral-content"
                                 onclick={`updateSlider(${galleries.indexOf(elevatore)})`}
                             >{elevatore.title}</button>
                         )

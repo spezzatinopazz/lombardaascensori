@@ -35,7 +35,7 @@ Il conferimento dei dati (che avviene spontaneamente a cura dell’utente) è ne
 
 Limitatamente ai dati conferiti spontaneamente nel presente form questi non saranno oggetto di comunicazione a terzi, ad eccezione dei fornitori dell’infrastruttura tecnologica che, in caso di necessità e/o mal funzionamenti potranno venire a conoscenza delle informazioni inserite dall’utente all’interno del form. 
 
-6. **ambito di diffusione**
+6. **Ambito di diffusione**
 
 I trattamenti di dati descritti nella presente informativa non comportano la diffusione degli stessi.
 

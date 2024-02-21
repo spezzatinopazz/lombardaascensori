@@ -19,27 +19,39 @@
       <!-- Expanded Menu -->
       <ul class="hidden sm:flex menu menu-horizontal px-1">
         <li><a class="active:text-accent" href="/">Home</a></li>
-        <li tabindex="1">
-          <a class="active:text-accent" href="/servizi">
-            Servizi
-            <svg
-              class="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              ><path
-                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-              ></path>
-            </svg>
+        <li tabindex="1" class="">
+          <div class="dropdown dropdown-hover dropdown-bottom">
+            <div tabindex="0" role="button" class="flex">
+              <a class="active:text-accent mr-2" href="/servizi">Servizi</a>
+              <svg
+                class="fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                ><path
+                  d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                ></path>
+              </svg>
+            </div>
+            <ul tabindex="0" class="dropdown-content z-[1] w-52 p-2 bg-[color-mix(in_oklab,oklch(var(--p)),black_7%)] space-y-1">
+              <li><a class="active:text-accent" href="/servizi#ascensori">Ascensori</a></li>
+              <li><a class="active:text-accent" href="/servizi#incastellature">Incastellature</a></li>
+              <li><a class="active:text-accent" href="/servizi#montacarichi">Montacarichi</a></li>
+              <li><a class="active:text-accent" href="/servizi#elevatori">Elevatori Per Disabili</a></li>
+              <li><a class="active:text-accent" href="/servizi#assistenza">Assistenza</a></li>
+            </ul>
+          </div>
+          <!-- <a >
+            
           </a>
-          <ul class="p-2 bg-primary-focus">
+          <ul class="p-2 bg-[color-mix(in_oklab,oklch(var(--p)),black_7%)]">
             <li><a class="active:text-accent" href="/servizi#ascensori">Ascensori</a></li>
             <li><a class="active:text-accent" href="/servizi#incastellature">Incastellature</a></li>
             <li><a class="active:text-accent" href="/servizi#montacarichi">Montacarichi</a></li>
             <li><a class="active:text-accent" href="/servizi#elevatori">Elevatori Per Disabili</a></li>
             <li><a class="active:text-accent" href="/servizi#assistenza">Assistenza</a></li>
-          </ul>
+          </ul> -->
         </li>
         <li><a class="active:text-accent" href="/#galleria">Galleria</a></li>
         <li><a class="active:text-accent" href="/#contattaci">Contattaci</a></li>
