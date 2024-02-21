@@ -1,5 +1,4 @@
 ---
-layout: ../layouts/InfoPageLayout.astro
 title: Privacy Policy
 noindex: true
 ---
