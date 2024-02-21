@@ -11,7 +11,7 @@ import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://lombardaascensori.it',
+  site: 'https://lombardaascensori.it/',
   integrations: [tailwind({
     config: {
       applyBaseStyles: false
